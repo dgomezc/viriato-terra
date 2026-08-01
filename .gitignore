@@ -7,7 +7,11 @@ node_modules/
 .next/
 dist/
 coverage/
-backend/uploads/
+backend/uploads/*
+!backend/uploads/images/
+!backend/uploads/images/.gitkeep
+!backend/uploads/documents/
+!backend/uploads/documents/.gitkeep
 backend/media/
 *.log
 *.tsbuildinfo

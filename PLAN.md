@@ -6,9 +6,9 @@
 - Estado: `awaiting_manual_validation`
 - Último paso aprobado: ninguno
 - Próxima acción: esperar validación manual del Paso 01; no iniciar el Paso 02
-- Rama: pendiente de inicializar
+- Rama: `main` (commit `2cafaa0`); remoto GitHub pendiente
 - Última actualización: 2026-08-01
-- Bloqueos: ninguno
+- Bloqueos: instalación puede tardar en equipos con red lenta; remoto GitHub pendiente
 - PC de validación: pendiente
 
 ## Regla de ejecución
@@ -43,6 +43,8 @@ Validación manual:
 4. Subir una imagen en Media y confirmar que queda en `backend/uploads/images/` y la API la sirve.
 5. Reiniciar Docker y verificar persistencia en pgAdmin (`http://localhost:5050`).
 6. Ejecutar `pnpm test`, `pnpm typecheck` y `pnpm --filter web build`.
+
+Tests automáticos: tests unitarios de `web` y `backend` pasan (1/1 cada uno; `fail 0`).
 
 Problema conocido: falta configurar el remoto de GitHub porque no se ha proporcionado URL ni credenciales.
 
