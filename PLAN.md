@@ -1,0 +1,89 @@
+# PLAN — Renovación gradual de Viriato Terra
+
+## Estado
+
+- Paso actual: 01
+- Estado: `awaiting_manual_validation`
+- Último paso aprobado: ninguno
+- Próxima acción: esperar validación manual del Paso 01; no iniciar el Paso 02
+- Rama: pendiente de inicializar
+- Última actualización: 2026-08-01
+- Bloqueos: ninguno
+- PC de validación: pendiente
+
+## Regla de ejecución
+
+Cada paso debe entregar configuración en Payload, contenido real o representativo, una página Astro, migración correspondiente, pruebas e instrucciones manuales. Al terminar, el estado pasa a `awaiting_manual_validation` y el agente se detiene. No se inicia el siguiente paso hasta recibir `Aprobado`.
+
+## Pasos
+
+- [ ] 01 — Repositorio e integración mínima (`awaiting_manual_validation`)
+- [ ] 02 — Sistema visual y estructura global (`pending`)
+- [ ] 03 — Portada (`pending`)
+- [ ] 04 — Páginas estáticas y contenido corporativo (`pending`)
+- [ ] 05 — Formulario de contacto (`pending`)
+- [ ] 06 — Eventos próximos (`pending`)
+- [ ] 07 — Archivo histórico de eventos (`pending`)
+- [ ] 08 — Resultados (`pending`)
+- [ ] 09 — Galerías Flickr (`pending`)
+- [ ] 10 — Blog y páginas especiales (`pending`)
+- [ ] 11 — Reconciliación y centro de archivo (`pending`)
+
+## Paso 01 — Repositorio e integración mínima
+
+Estado: `awaiting_manual_validation`.
+
+Implementado: monorepo pnpm con `web/` Astro + Tailwind y `backend/` Payload preparado para PostgreSQL; Docker Compose con PostgreSQL y pgAdmin; colecciones `Users`, `Pages` (borradores/publicación) y `Media` con Sharp y almacenamiento local; API REST Payload; `/diagnostico/` con estados de CMS no disponible y vacío; seed idempotente; CI y documentación para trabajo desde varios equipos.
+
+Validación manual:
+
+1. Copiar `.env.example` a `.env`, ejecutar `pnpm install` y `pnpm db:up`.
+2. Ejecutar `pnpm --filter backend dev` y abrir `http://localhost:3000/admin`; crear el primer usuario.
+3. Crear/verificar `diagnostico`, guardar borrador y comprobar que `http://localhost:4321/diagnostico/` no muestra borradores; publicar y comprobar el título.
+4. Subir una imagen en Media y confirmar que queda en `backend/uploads/images/` y la API la sirve.
+5. Reiniciar Docker y verificar persistencia en pgAdmin (`http://localhost:5050`).
+6. Ejecutar `pnpm test`, `pnpm typecheck` y `pnpm --filter web build`.
+
+Problema conocido: falta configurar el remoto de GitHub porque no se ha proporcionado URL ni credenciales.
+
+### Entrega
+
+- Monorepo raíz con `web/`, `backend/`, `migration/` y `design/`.
+- Docker Compose con PostgreSQL y pgAdmin.
+- Payload conectado a PostgreSQL.
+- Colección `Pages` mínima y colección `Media`.
+- Astro con Tailwind CSS y página `/diagnostico/`.
+- Lectura de una página publicada desde Payload.
+- Referencia de imagen almacenada en `backend/uploads/images/`.
+- Seed y prueba de integración.
+
+### Validación manual pendiente
+
+1. Abrir http://localhost:3000/admin y crear el primer usuario.
+2. Crear una página de prueba y dejarla como borrador.
+3. Confirmar que el borrador no aparece en http://localhost:4321/diagnostico/.
+4. Publicarla y comprobar que aparece en Astro.
+5. Subir una imagen y confirmar que se sirve desde Payload.
+6. Reiniciar PostgreSQL y Payload y comprobar persistencia.
+7. Abrir http://localhost:5050 y consultar las tablas desde pgAdmin.
+8. Confirmar que `pnpm install`, `pnpm db:up` y el seed permiten repetir el entorno.
+
+### Tests ejecutados
+
+- Pendientes hasta completar la instalación de dependencias y la primera ejecución.
+
+## Protocolo entre equipos
+
+Antes de trabajar: `git pull --ff-only`, leer este archivo y `AGENTS.md`, levantar Docker y comprobar el paso activo.
+
+Al terminar: ejecutar validaciones, actualizar este archivo, crear commit, subir la rama y detenerse.
+
+## Decisiones de arquitectura
+
+- Payload y PostgreSQL.
+- Astro separado del backend.
+- Tailwind CSS como base visual.
+- shadcn/ui solo para islas interactivas justificadas.
+- Archivos locales en `backend/uploads/` durante esta fase.
+- Sin Cloudflare, R2, S3, CDN ni imgproxy.
+- Hosting y despliegue se analizarán después del último paso.

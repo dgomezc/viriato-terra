@@ -1,0 +1,16 @@
+node_modules/
+.pnpm-store/
+.env
+.env.*
+!.env.example
+.astro/
+.next/
+dist/
+coverage/
+backend/uploads/
+backend/media/
+*.log
+*.tsbuildinfo
+*.local
+docker-data/
+migration/reports/*.json

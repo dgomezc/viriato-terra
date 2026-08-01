@@ -1,0 +1,456 @@
+<!DOCTYPE html><html lang="es" style=""><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<style>
+        @layer base {
+            html, body { margin: 0; padding: 0; }
+            body { overscroll-behavior: none; }
+            main > :first-child { margin-top: 0 !important; }
+            main > :last-child { margin-bottom: 0 !important; }
+        }
+        ::-webkit-scrollbar { display: none; }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;700;800;900&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#aa3700",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#f0f1f1",
+                        "secondary": "#5f5e5e",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "surface-container-highest": "#e2e2e2",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "primary-container": "#cb4a13",
+                        "surface": "#ffffff",
+                        "tertiary-fixed": "#e4e2e2",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#ffdbcf",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#594139",
+                        "outline": "#8d7168",
+                        "tertiary-container": "#757474",
+                        "on-primary-fixed-variant": "#822800",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb59c",
+                        "on-primary-fixed": "#380c00",
+                        "secondary-container": "#e2dfde",
+                        "background": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary": "#5c5c5c",
+                        "on-secondary-container": "#636262",
+                        "on-surface": "#1a1c1c",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dadada",
+                        "primary": "#d9541e",
+                        "burnt-ochre": "#d9541e",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "primary-fixed-dim": "#ffb59c",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "surface-container": "#eeeeee",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fefcfc",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "surface-variant": "#e2e2e2",
+                        "secondary-fixed": "#e5e2e1",
+                        "outline-variant": "#e1bfb5",
+                        "inverse-surface": "#2f3131",
+                        "tactical-gray": "#3F4248",
+                        "hazard-yellow": "#FFD300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "unit": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Anybody"],
+                        "headline-lg-mobile": ["JetBrains Mono"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-lg": ["JetBrains Mono"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "label-caps": ["JetBrains Mono"],
+                        "data-point": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["72px", { "lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "data-point": ["20px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-background">
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30">
+<div class="h-20 max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between">
+<div class="flex items-center gap-4">
+<img alt="Viriato Terra Logo" class="w-auto object-contain h-12" src="viriato-logo.png">
+
+</div>
+<nav class="hidden lg:flex items-center gap-gutter" data-active-classes="text-primary font-bold"><a aria-current="page" class="transition-colors text-primary font-bold" data-path="inicio" href="#">Inicio</a><a class="transition-colors font-bold text-on-surface" data-path="nosotros-y-servicios" href="#">Nosotros &amp; Servicios</a><a class="transition-colors font-bold text-on-surface" data-path="inscripciones" href="#">Inscripciones</a><a class="transition-colors font-bold text-on-surface" data-path="resultados" href="#">Resultados</a><a class="transition-colors font-bold text-on-surface" data-path="fotos" href="#">Fotos</a><a class="transition-colors font-bold text-on-surface" data-path="contacto" href="#">Contacto</a></nav>
+<div class="flex items-center gap-4">
+
+<button class="lg:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="w-full pt-20 bg-background">
+<div class="flex flex-col w-full">
+<!-- Dynamic Hero Section -->
+<section class="relative w-full overflow-hidden bg-surface-container-lowest">
+<!-- Animated Topography Background (Subtle) -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<svg height="100%" viewBox="0 0 1000 1000" width="100%" xmlns="http://www.w3.org/2000/svg">
+<filter id="noise">
+<feTurbulence baseFrequency="0.015" numOctaves="3" stitchTiles="stitch" type="fractalNoise"></feTurbulence>
+</filter>
+<rect filter="url(#noise)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- Split Hero Layout -->
+<div class="flex flex-col lg:flex-row w-full min-h-[870px]">
+<!-- Left Content: High-Impact Typography -->
+<div class="flex-1 flex flex-col justify-center px-margin-mobile lg:px-margin-desktop py-20 z-10">
+<div class="inline-flex items-center gap-2 mb-6">
+<span class="w-12 h-[2px] bg-primary"></span>
+<span class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">Viriato Terra Series 2025</span>
+</div>
+<h1 class="font-display-xl text-display-xl text-on-surface mb-8 max-w-2xl uppercase">
+                        DOMINA LA <span class="text-primary">SIERRA</span>, CONQUISTA EL BARRO.
+                    </h1>
+<p class="font-body-lg text-body-lg text-secondary mb-12 max-w-lg leading-relaxed">
+                        Diseñamos experiencias tácticas en el corazón de la Sierra de San Vicente. MTB, Gravel y Trail para los que buscan la pureza del terreno.
+                    </p>
+<div class="flex flex-wrap gap-gutter">
+<a class="px-8 py-4 bg-primary text-on-primary font-label-caps text-label-caps hover:brightness-110 transition-all duration-300 flex items-center gap-3" href="#">
+                            EXPLORAR EVENTOS <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="px-8 py-4 bg-white border border-outline-variant text-on-surface font-label-caps text-label-caps hover:bg-surface-container transition-all duration-300" href="#">
+                            NUESTRA FILOSOFÍA
+                        </a>
+</div>
+</div>
+<!-- Right Visual: Layered Image Stack -->
+<div class="flex-1 relative min-h-[400px] lg:min-h-0 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest to-transparent lg:z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover contrast-110" data-alt="A high-intensity MTB racer covered in mud, pedaling through a rugged mountain trail in the Sierra de San Vicente. Sunlight filters through oak trees, highlighting the grit and sweat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfeoSOPQDka4SRQZL712tyNZzZ8UnM4PZyWF_pHw2_EIoIkyMQFv1Tseb3qIp5DRgeVobwfzCmfab5zTqvkiXfCGIL8OgQm9h_Apn6opzD89PVWM6RXG2EC9WwC1jCLYgdMsbPsdVLVc_p1SRXhFuyV2oQ3lfW759-UnqjCIr3_zeLy5OfvxdKWq_u5vrxGelTXma41SM6SepB-q1BwjQobafv-CxhST0d_zhQnGSB9Rn1x_EJrZvuLF_5YmJ0A0nP3J2ThPC5tHk">
+<!-- Tactical HUD Overlay -->
+<div class="absolute bottom-12 right-12 z-20 hidden lg:block">
+<div class="p-6 bg-white/90 backdrop-blur-md border border-outline-variant/30 shadow-xl space-y-4">
+<div class="flex justify-between items-end gap-12">
+<span class="font-label-caps text-label-caps text-primary opacity-80">NEXT_RACE_LOC</span>
+<span class="font-data-point text-data-point text-on-surface">SIERRA DE SAN VICENTE</span>
+</div>
+<div class="w-full h-1 bg-surface-container">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+<div class="flex justify-between text-[10px] font-label-caps text-secondary">
+<span class="">0% START</span>
+<span class="">100% FINISH</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission Statement -->
+<section class="py-24 bg-surface px-margin-mobile lg:px-margin-desktop relative">
+<div class="max-w-container-max mx-auto flex flex-col lg:flex-row items-end gap-16">
+<div class="lg:w-1/3">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6 uppercase">
+                        ESPECIALISTAS EN <br><span class="text-primary">EVENTOS DE PUEBLO.</span>
+</h2>
+<div class="w-20 h-2 bg-primary mb-8"></div>
+</div>
+<div class="lg:w-2/3">
+<p class="font-body-lg text-body-lg text-secondary leading-relaxed">
+                        No somos una multinacional de eventos. Somos Viriato Terra. Entendemos el pulso de la Sierra de San Vicente porque es nuestra casa. Ofrecemos una gestión integral 360º: desde el cronometraje de precisión hasta la logística táctica y la captura fotográfica del esfuerzo. Nuestra misión es simple: elevar las carreras locales al estándar profesional que los atletas merecen.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Next Events -->
+<section class="py-24 bg-surface-container-lowest px-margin-mobile lg:px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="font-label-caps text-label-caps text-primary block mb-2">// DESPLIEGUE OPERATIVO</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">Próximos Desafíos</h3>
+</div>
+<div class="hidden lg:block font-data-point text-data-point text-outline">
+                        2025_SCHEDULE.v01
+                    </div>
+</div>
+<!-- Event Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- MTB Navatrail -->
+<div class="group relative flex flex-col bg-white border border-outline-variant hover:border-primary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Action shot of a trail runner navigating a technical rock section." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtl9nJdH_Ea8ivRR8Kefah2Iwm_0f-QLJsmjUMSzoqU6BpL_qSwuZ2NqjVjNt2DtIndw90TVLfMcVnqjc1Bf4ep632OC5OcWLVh5KN0pXp8Er1mlIksLb8TkcFhTRDAgm7olny8CvY9qectWRmihI7mmoaeMVU28tDfLHYP9-hccMeyFdGDJtabUW_VlmUmg9saHYfatPCLgEWsxHlXX8aloU9M1xOOyvUl_VDx5g0sLmK5bapAbIgpq-QFSLodvzGZwZtRSNt6mA">
+<div class="absolute top-4 left-4 bg-primary px-3 py-1 font-label-caps text-[10px] text-white">MTB / TRAIL</div>
+</div>
+<div class="p-8 space-y-6">
+<div>
+<span class="font-data-point text-data-point text-primary">MARZO 2025</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mt-2">MTB NAVATRAIL</h4>
+</div>
+<div class="flex flex-col gap-2 border-l-2 border-surface-container pl-4">
+<span class="font-label-caps text-[11px] text-secondary uppercase tracking-widest">Localización</span>
+<span class="font-body-md text-body-md text-on-surface">Navamorcuende, Toledo</span>
+</div>
+<a class="w-full py-4 border border-outline text-center font-label-caps text-label-caps text-on-surface hover:bg-primary hover:border-primary hover:text-white transition-colors" href="#">
+                                VER EVENTO
+                            </a>
+</div>
+</div>
+<!-- Subida a los Castaños -->
+<div class="group relative flex flex-col bg-white border border-outline-variant hover:border-primary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Atmospheric forest road surrounded by ancient chestnut trees." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoO7Sv9bQ2vTIrxPcw02DN9SmpRVVC7lBSKMgFR9hEskJeffNdHStDZZccOLUhvnS1IwxUAJf1zQUy80LnPiBumaQj2PH-xHU1X7N5LzfYxng4lVMuWLbuK6t3BE7q3eqyg92x6k8Xyk9Ig7h20DdSsaFupCOpQevYE2nHNPYyC0O4T4xw2KfrLWOsejwFwrcyLixkBjAUtyyGyz2Ct3KoLaQq6lXUf0zZf2OHWHHTGZDtbN6NVFH3CRSagNzHWDXwq4SrusUj5Dg">
+<div class="absolute top-4 left-4 bg-hazard-yellow px-3 py-1 font-label-caps text-[10px] text-on-surface uppercase">Subida Épica</div>
+</div>
+<div class="p-8 space-y-6">
+<div>
+<span class="font-data-point text-data-point text-primary">MAYO 2025</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mt-2">SUBIDA A LOS CASTAÑOS</h4>
+</div>
+<div class="flex flex-col gap-2 border-l-2 border-surface-container pl-4">
+<span class="font-label-caps text-[11px] text-secondary uppercase tracking-widest">Localización</span>
+<span class="font-body-md text-body-md text-on-surface">El Real de San Vicente</span>
+</div>
+<a class="w-full py-4 border border-outline text-center font-label-caps text-label-caps text-on-surface hover:bg-primary hover:border-primary hover:text-white transition-colors" href="#">
+                                VER EVENTO
+                            </a>
+</div>
+</div>
+<!-- Conquista del Bonal -->
+<div class="group relative flex flex-col bg-white border border-outline-variant hover:border-primary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Wide shot of a mountain peak with athletes climbing a steep ridge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAprZOFgLsm-0oRtLPP1i2GPIkxi9SDp64te5zaG56QI3XYGrFvYo5mdCtAibkJtav_iNsUqYIaeWlnosVEsFaziDNESk3g0JaLItcOgQ1iHfBslX7-23hW8OUWDtx2qvalHLhzfULRIj9ADE3OOZMZuHpsrml_ekrZ3MgwmI_sB1afzdU3QbzGbC-FYNd-seKtFjJSo58jp6nmO4dj3f7qlNlMirC0OtgxDnHX8cddF9PDN5wxK6q8yi0yBmdlvjPlPJXR_UE7R_g">
+<div class="absolute top-4 left-4 bg-secondary px-3 py-1 font-label-caps text-[10px] text-white uppercase">Vertical</div>
+</div>
+<div class="p-8 space-y-6">
+<div>
+<span class="font-data-point text-data-point text-primary">JUNIO 2025</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mt-2">CONQUISTA DEL BONAL</h4>
+</div>
+<div class="flex flex-col gap-2 border-l-2 border-surface-container pl-4">
+<span class="font-label-caps text-[11px] text-secondary uppercase tracking-widest">Localización</span>
+<span class="font-body-md text-body-md text-on-surface">Hinojosa de San Vicente</span>
+</div>
+<a class="w-full py-4 border border-outline text-center font-label-caps text-label-caps text-on-surface hover:bg-primary hover:border-primary hover:text-white transition-colors" href="#">
+                                VER EVENTO
+                            </a>
+</div>
+</div>
+<!-- La Inhumana -->
+<div class="group relative flex flex-col bg-white border border-outline-variant hover:border-primary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Night trail run visual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVSVvheBqKaBtnMHzFu-fpS2MI01_JGDsM4txTGz3Md803sxcKHGQzWe9GNGj5Hl8OkYTJ6tchr-HeMBsyl32xrYRejHbGouwX4246GqIgoDuqfsFDsy4Ox9JEURiketKsyMUmXmbgjKwlcSxdfaKcD8M3WpeN46f5a-zDygjAkdFNJXphNe3eLMHNe-cP0pm8SBLPVcfVi_sxRUYCudnbs8wZrNF44_jcsJ4mKzG8LU-tmgDCSrVyPG-1YvR217Dh92y0SeZWYO8">
+<div class="absolute top-4 left-4 bg-error px-3 py-1 font-label-caps text-[10px] text-white uppercase">Hardcore</div>
+</div>
+<div class="p-8 space-y-6">
+<div>
+<span class="font-data-point text-data-point text-primary">AGOSTO 2025</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mt-2">LA INHUMANA</h4>
+</div>
+<div class="flex flex-col gap-2 border-l-2 border-surface-container pl-4">
+<span class="font-label-caps text-[11px] text-secondary uppercase tracking-widest">Localización</span>
+<span class="font-body-md text-body-md text-on-surface">Pueblo de la Sierra</span>
+</div>
+<a class="w-full py-4 border border-outline text-center font-label-caps text-label-caps text-on-surface hover:bg-primary hover:border-primary hover:text-white transition-colors" href="#">
+                                VER EVENTO
+                            </a>
+</div>
+</div>
+<!-- Carrera Solidaria ELA -->
+<div class="group relative flex flex-col bg-white border border-outline-variant hover:border-primary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Community race scene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHxrYvUAHpyc7Pcx_VxE9HZSux5V1AutRk_bgo26T7KaQN2nueLCMpFSOUjfelBPs_9wKgAkHfXqKpgn5idhL5QnVffcqCzf_NAguUXbLXg6XqoeQ3bElmtuj9vJeLbyocrosMy6y-sGt9O-6tbRPuublALj1pe2EwSZoU991D7aON2noBd99oj8KKH9PKjphS57lyyx5bWHmH0sPR2jSVZlvnaLocqNecAvrhsLcuyxbC5vYgJ4Iuip00ddpIVp3acFM6l4IwZ-M">
+<div class="absolute top-4 left-4 bg-tertiary-container px-3 py-1 font-label-caps text-[10px] text-white uppercase font-bold">Solidaria</div>
+</div>
+<div class="p-8 space-y-6">
+<div>
+<span class="font-data-point text-data-point text-primary">SEPTIEMBRE 2025</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mt-2">SOLIDARIA ELA</h4>
+</div>
+<div class="flex flex-col gap-2 border-l-2 border-surface-container pl-4">
+<span class="font-label-caps text-[11px] text-secondary uppercase tracking-widest">Localización</span>
+<span class="font-body-md text-body-md text-on-surface">Pepino, Toledo</span>
+</div>
+<a class="w-full py-4 border border-outline text-center font-label-caps text-label-caps text-on-surface hover:bg-primary hover:border-primary hover:text-white transition-colors" href="#">
+                                VER EVENTO
+                            </a>
+</div>
+</div>
+<!-- Call to Action Card -->
+<div class="relative flex flex-col bg-primary justify-center items-center p-12 text-center group cursor-pointer overflow-hidden shadow-2xl">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-6xl text-white">calendar_month</span>
+</div>
+<h4 class="font-headline-lg text-headline-lg text-white mb-6 uppercase">MÁS BARRO,<br>MÁS GLORIA.</h4>
+<p class="font-label-caps text-label-caps text-white/80 mb-8 tracking-widest">CALENDARIO COMPLETO 2025</p>
+<a class="inline-flex items-center gap-4 px-10 py-5 bg-white text-on-surface font-label-caps text-label-caps hover:bg-surface-container-high transition-all duration-300" href="#">
+                            VER TODOS LOS EVENTOS
+                        </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Bento -->
+<section class="py-24 bg-surface px-margin-mobile lg:px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col lg:flex-row gap-12 items-start mb-16">
+<div class="flex-1">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-6 uppercase tracking-tight">Arquitectura de Carreras</h3>
+<p class="font-body-lg text-body-lg text-secondary">
+                            Construimos cada kilómetro con rigor técnico. No solo organizamos carreras; creamos plataformas de rendimiento para atletas y organizadores locales.
+                        </p>
+</div>
+<div class="lg:w-1/3 flex flex-wrap gap-4">
+<div class="px-4 py-2 bg-surface-container text-on-surface font-label-caps text-[10px] uppercase border border-outline-variant">Logística Táctica</div>
+<div class="px-4 py-2 bg-surface-container text-on-surface font-label-caps text-[10px] uppercase border border-outline-variant">Cronometraje RFID</div>
+<div class="px-4 py-2 bg-surface-container text-on-surface font-label-caps text-[10px] uppercase border border-outline-variant">Media &amp; Photo</div>
+<div class="px-4 py-2 bg-surface-container text-on-surface font-label-caps text-[10px] uppercase border border-outline-variant">Marketing Deportivo</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Photo Service -->
+<div class="md:col-span-2 relative h-[400px] overflow-hidden group border border-outline-variant">
+<img class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" data-alt="Professional sports photographer capturing a high-speed MTB corner." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAGIj5ANg0V8BEt1rnIxv0rdA377ErEfL5rue-BL92Am2Zk1LXFE19jHefKBEACtrNn0kXNzxXLF9YI6rrrlt5susTyp2zWuR9Ck0aXZm6fpugH9NkSfke6aGd_H3lvG9cRB-efII8VywCV7EsRy-UB6Py6P-FZb7_tL0PptDVEfiA7XRoP1MxeEFGT3xxyYf7Y7ylIlPs0VAyPAKDKMkt-5-FpA2d29z4thWusSY-Pd9Y241FjcCAF0kT2ib74iNNTTIPpVltKm0">
+<div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/20 to-transparent p-8 flex flex-col justify-end">
+<span class="font-data-point text-data-point text-primary mb-2">01. MEDIA</span>
+<h5 class="font-headline-md text-headline-md text-on-surface uppercase">Captura de Impacto</h5>
+<p class="text-secondary font-body-md max-w-xs mt-4">Fotografía profesional que narra la épica de cada participante.</p>
+</div>
+</div>
+<!-- Organization -->
+<div class="md:col-span-1 relative h-[400px] bg-surface-container-low p-8 flex flex-col justify-between border border-outline-variant">
+<div class="space-y-4">
+<span class="font-data-point text-data-point text-primary">02. ADMIN</span>
+<h5 class="font-headline-md text-headline-md text-on-surface uppercase">Gestión 360º</h5>
+</div>
+<p class="text-secondary font-body-md">Desde permisos legales hasta marcaje del terreno. Nos encargamos de todo.</p>
+<div class="w-full h-12 bg-white flex items-center px-4 border border-outline-variant">
+<div class="h-1 bg-primary w-full animate-pulse"></div>
+</div>
+</div>
+<!-- Chrono -->
+<div class="md:col-span-1 relative h-[400px] bg-surface-variant p-8 flex flex-col justify-between overflow-hidden border border-outline-variant">
+<div class="absolute top-0 right-0 -mr-8 -mt-8 opacity-10 text-[180px] font-display-xl text-on-surface leading-none">03</div>
+<div class="space-y-4">
+<span class="font-data-point text-data-point text-primary">03. CHRONO</span>
+<h5 class="font-headline-md text-headline-md text-on-surface uppercase">Precisión Milimétrica</h5>
+</div>
+<p class="text-secondary font-body-md z-10">Resultados en tiempo real con tecnología RFID de vanguardia.</p>
+<div class="flex gap-2">
+<span class="w-3 h-3 bg-primary rounded-full animate-ping"></span>
+<span class="font-label-caps text-[10px] text-on-surface">LIVE_DATA_FEED</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Footer CTA -->
+<section class="py-20 bg-primary overflow-hidden relative">
+<div class="absolute inset-0 flex items-center justify-center opacity-10 select-none pointer-events-none">
+<span class="font-display-xl text-[400px] text-white whitespace-nowrap">VIRIATO TERRA</span>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop flex flex-col lg:flex-row items-center justify-between relative z-10">
+<div class="text-center lg:text-left mb-10 lg:mb-0">
+<h2 class="font-display-xl text-headline-lg lg:text-display-xl text-white mb-4 uppercase">¿LISTO PARA EL BARRO?</h2>
+<p class="font-label-caps text-label-caps text-white opacity-90 tracking-widest uppercase">Únete a la legión en la próxima prueba</p>
+</div>
+<a class="px-12 py-6 bg-white text-on-surface font-headline-md text-headline-md hover:bg-surface-container transition-all shadow-2xl flex items-center gap-4 group" href="#">
+                    INSCRIBIRME AHORA <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">rocket_launch</span>
+</a>
+</div>
+</section>
+</div>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Animated background scroll effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const bg = document.querySelector('.absolute.inset-0.opacity-20');
+            if (bg) bg.style.transform = `translateY(${scrolled * 0.1}px)`;
+        });
+    </script>
+</main>
+<footer class="w-full bg-surface-container-low border-t border-outline-variant/30 py-16">
+<div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+<div class="space-y-4">
+<img alt="Viriato Terra" class="h-12 w-auto opacity-90" src="viriato-logo.png">
+<p class="text-secondary font-body-md leading-relaxed">El espíritu táctico de la Sierra de San Vicente. Pasión por el MTB y las carreras de montaña.</p>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Navegación</h4>
+<div class="flex flex-col gap-3">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Aviso Legal</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Privacidad</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Cookies</a>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Conéctate</h4>
+<div class="flex gap-4">
+<a class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center rounded-sm hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</a>
+<a class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center rounded-sm hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</a>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/20 text-center text-outline font-label-caps text-label-caps">© 2025 VIRIATO TERRA. ENGINEERED FOR THE RUGGED.</div>
+</div>
+</footer>
+
+
+</body></html>

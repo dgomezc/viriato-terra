@@ -1,0 +1,45 @@
+---
+import DiagnosticLayout from '../../layouts/DiagnosticLayout.astro';
+import { getPageBySlug } from '../../lib/payload';
+
+let page = null;
+let errorMessage = null;
+
+try {
+  page = await getPageBySlug('diagnostico');
+} catch (error) {
+  errorMessage = error instanceof Error ? error.message : 'No se pudo consultar Payload.';
+}
+---
+
+<DiagnosticLayout>
+  <section class="space-y-8">
+    <p class="font-display text-sm font-bold uppercase tracking-[0.2em] text-brand">Paso 01 · Integración</p>
+    <div class="space-y-4">
+      <h1 class="font-display text-4xl font-bold uppercase tracking-tight sm:text-6xl">Astro conectado</h1>
+      <p class="max-w-2xl text-lg leading-8 text-muted">
+        Esta página temporal confirma que Astro puede consultar contenido publicado desde Payload.
+      </p>
+    </div>
+
+    {errorMessage ? (
+      <div class="border border-red-700 bg-red-50 p-5 text-red-900" role="alert">
+        <h2 class="font-display font-bold uppercase">CMS no disponible</h2>
+        <p class="mt-2">{errorMessage}</p>
+      </div>
+    ) : page ? (
+      <article class="border border-line bg-white p-6 shadow-[6px_6px_0_#d9541e]">
+        <p class="font-display text-xs font-bold uppercase tracking-[0.2em] text-brand">Contenido desde Payload</p>
+        <h2 class="mt-3 font-display text-2xl font-bold uppercase">{page.title}</h2>
+        <p class="mt-3 text-muted">Slug: <code>{page.slug}</code></p>
+      </article>
+    ) : (
+      <div class="border border-line bg-white p-5" role="status">
+        <h2 class="font-display font-bold uppercase">Sin contenido publicado</h2>
+        <p class="mt-2 text-muted">Crea y publica una página con slug <code>diagnostico</code> en Payload.</p>
+      </div>
+    )}
+
+    <p class="text-sm text-muted">Payload: <code>{import.meta.env.PUBLIC_PAYLOAD_URL ?? 'http://localhost:3000'}</code></p>
+  </section>
+</DiagnosticLayout>
