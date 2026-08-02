@@ -15,6 +15,7 @@ backend/uploads/*
 !backend/uploads/documents/
 !backend/uploads/documents/.gitkeep
 backend/media/
+backend/app/**/importMap.js
 *.log
 *.tsbuildinfo
 *.local
