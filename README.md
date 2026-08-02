@@ -15,14 +15,47 @@ El proyecto está ejecutando el Paso 01. Consulta [PLAN.md](./PLAN.md) antes de 
 
 ## Puesta en marcha
 
+### 1. PostgreSQL en el servidor de la red local
+
+En el servidor que aloja la base de datos:
+
 ```powershell
-Copy-Item .env.example .env
 Copy-Item infra/postgres/.env.example infra/postgres/.env
+docker compose --env-file infra/postgres/.env -f infra/postgres/docker-compose.yml up -d
+```
+
+Consulta [infra/postgres/README.md](./infra/postgres/README.md) para el firewall y la configuración LAN.
+
+### 2. Variables en el PC de desarrollo
+
+El `.env` de la raíz no se carga automáticamente dentro de cada aplicación. Crea estos archivos ignorados por Git:
+
+`backend/.env.local`:
+
+```env
+DATABASE_URL=postgres://viriato:contraseña@192.168.1.50:5432/viriato
+PAYLOAD_SECRET=cambia-esta-clave-por-una-larga
+PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
+WEB_ORIGIN=http://localhost:4321
+```
+
+`web/.env`:
+
+```env
+PUBLIC_PAYLOAD_URL=http://localhost:3000
+```
+
+Sustituye la IP, usuario, contraseña y secreto por los valores reales.
+
+### 3. Aplicaciones Astro y Payload
+
+```powershell
 pnpm install
-pnpm db:up
 pnpm dev:backend
 pnpm dev:web
 ```
+
+También puedes lanzar ambas aplicaciones a la vez con `pnpm dev`.
 
 Servicios locales:
 
