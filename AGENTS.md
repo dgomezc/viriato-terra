@@ -12,6 +12,8 @@
 - `web/` es Astro y presenta contenido.
 - `backend/` es Payload y la fuente editorial.
 - PostgreSQL es la fuente de datos.
+- La infraestructura de PostgreSQL y pgAdmin está en `infra/postgres/`; no crear un Compose alternativo en la raíz.
+- En entornos separados, `DATABASE_URL` debe apuntar a la IP privada del servidor y los puertos deben limitarse a la LAN.
 - `backend/uploads/images/` y `backend/uploads/documents/` contienen archivos locales ignorados por Git.
 - Astro no debe leer rutas físicas del disco.
 - WordPress solo se consulta como fuente de migración y nunca se modifica.

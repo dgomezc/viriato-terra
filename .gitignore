@@ -17,4 +17,5 @@ backend/media/
 *.tsbuildinfo
 *.local
 docker-data/
+infra/postgres/backups/*
 migration/reports/*.json

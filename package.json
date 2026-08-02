@@ -10,8 +10,9 @@
     "lint": "pnpm --recursive lint",
     "typecheck": "pnpm --recursive typecheck",
     "test": "pnpm --recursive test",
-    "db:up": "docker compose up -d postgres pgadmin",
-    "db:down": "docker compose down",
+    "db:up": "docker compose --env-file infra/postgres/.env -f infra/postgres/docker-compose.yml up -d",
+    "db:down": "docker compose --env-file infra/postgres/.env -f infra/postgres/docker-compose.yml down",
+    "db:logs": "docker compose --env-file infra/postgres/.env -f infra/postgres/docker-compose.yml logs -f",
     "db:migrate": "pnpm --filter backend payload migrate",
     "db:seed": "pnpm --filter backend seed"
   }

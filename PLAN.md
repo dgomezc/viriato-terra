@@ -37,7 +37,7 @@ Implementado: monorepo pnpm con `web/` Astro + Tailwind y `backend/` Payload pre
 
 Validación manual:
 
-1. Copiar `.env.example` a `.env`, ejecutar `pnpm install` y `pnpm db:up`.
+1. En el servidor, copiar `infra/postgres/.env.example` a `infra/postgres/.env` y ejecutar `pnpm db:up`; en el PC de desarrollo, copiar `.env.example` a `.env` y poner la IP LAN del servidor en `DATABASE_URL`.
 2. Ejecutar `pnpm --filter backend dev` y abrir `http://localhost:3000/admin`; crear el primer usuario.
 3. Crear/verificar `diagnostico`, guardar borrador y comprobar que `http://localhost:4321/diagnostico/` no muestra borradores; publicar y comprobar el título.
 4. Subir una imagen en Media y confirmar que queda en `backend/uploads/images/` y la API la sirve.
@@ -50,8 +50,8 @@ Problema conocido: falta configurar el remoto de GitHub porque no se ha proporci
 
 ### Entrega
 
-- Monorepo raíz con `web/`, `backend/`, `migration/` y `design/`.
-- Docker Compose con PostgreSQL y pgAdmin.
+- Monorepo raíz con `web/`, `backend/`, `migration/`, `design/` e `infra/postgres/`.
+- Docker Compose separado en `infra/postgres/` con PostgreSQL y pgAdmin.
 - Payload conectado a PostgreSQL.
 - Colección `Pages` mínima y colección `Media`.
 - Astro con Tailwind CSS y página `/diagnostico/`.
@@ -68,7 +68,7 @@ Problema conocido: falta configurar el remoto de GitHub porque no se ha proporci
 5. Subir una imagen y confirmar que se sirve desde Payload.
 6. Reiniciar PostgreSQL y Payload y comprobar persistencia.
 7. Abrir http://localhost:5050 y consultar las tablas desde pgAdmin.
-8. Confirmar que `pnpm install`, `pnpm db:up` y el seed permiten repetir el entorno.
+8. Confirmar que `pnpm install`, `pnpm db:up` y el seed permiten repetir el entorno desde otro PC; comprobar que PostgreSQL solo es accesible desde la LAN.
 
 ### Tests ejecutados
 
