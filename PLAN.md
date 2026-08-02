@@ -52,6 +52,7 @@ Problema conocido: falta configurar el remoto de GitHub porque no se ha proporci
 
 - Monorepo raíz con `web/`, `backend/`, `migration/`, `design/` e `infra/postgres/`.
 - Docker Compose separado en `infra/postgres/` con PostgreSQL y pgAdmin.
+- Ejemplos de entorno para `backend/` y `web/`, más guía multiplataforma en `docs/DEVELOPMENT.md`.
 - Payload conectado a PostgreSQL.
 - Colección `Pages` mínima y colección `Media`.
 - Astro con Tailwind CSS y página `/diagnostico/`.

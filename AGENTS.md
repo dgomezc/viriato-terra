@@ -53,3 +53,5 @@ Al terminar un paso:
 4. Detente. Los tests no equivalen a aprobación humana.
 
 Solo continúa cuando el usuario indique `Aprobado`. Si solicita cambios, modifica exclusivamente el paso actual.
+
+La instalación multiplataforma y los comandos de arranque deben mantenerse documentados en `docs/DEVELOPMENT.md`.

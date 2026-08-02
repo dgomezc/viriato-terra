@@ -1,5 +1,7 @@
 # Viriato Terra
 
+Consulta la [guía completa de desarrollo](./docs/DEVELOPMENT.md) para instalar Node.js, npm, pnpm, Git y Docker en Windows, Linux y WSL2.
+
 Renovación gradual de Viriato Terra con Astro y Payload CMS.
 
 ## Paso actual
