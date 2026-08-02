@@ -7,9 +7,10 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
+import { SiteSettings } from './globals/SiteSettings'
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 export default buildConfig({
-  admin: { user: Users.slug, importMap: { baseDir: dirname } }, collections: [Users, Pages, Media], editor: lexicalEditor(),
+  admin: { user: Users.slug, importMap: { baseDir: dirname } }, collections: [Users, Pages, Media], globals: [SiteSettings], editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '', typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
   db: postgresAdapter({ pool: { connectionString: process.env.DATABASE_URL || '' } }), sharp,
 })

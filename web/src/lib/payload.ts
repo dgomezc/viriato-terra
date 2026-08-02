@@ -28,3 +28,19 @@ export async function getPageBySlug(slug: string): Promise<PageRecord | null> {
 export function payloadPublicUrl(path: string): string {
   return `${payloadUrl}${path.startsWith('/') ? path : `/${path}`}`;
 }
+
+export type SiteSettings = {
+  siteName: string;
+  tagline?: string;
+  logo?: { url?: string; alt?: string } | string | null;
+  navigation?: Array<{ label: string; href: string }>;
+  footerText?: string;
+  socialLinks?: Array<{ label: string; url: string }>;
+  contact?: { email?: string; phone?: string; address?: string };
+};
+
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  const response = await fetch(`${payloadUrl}/api/globals/site-settings?depth=1`);
+  if (!response.ok) throw new Error(`Payload respondió ${response.status}`);
+  return (await response.json()) as SiteSettings;
+}

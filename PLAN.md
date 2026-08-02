@@ -2,14 +2,14 @@
 
 ## Estado
 
-- Paso actual: 01
+- Paso actual: 02
 - Estado: `awaiting_manual_validation`
-- Último paso aprobado: ninguno
-- Próxima acción: esperar validación manual del Paso 01; no iniciar el Paso 02
+- Último paso aprobado: 01
+- Próxima acción: esperar validación manual del Paso 02; no iniciar el Paso 03
 - Rama: `main` (commit `2cafaa0`); remoto GitHub pendiente
 - Última actualización: 2026-08-01
 - Bloqueos: instalación puede tardar en equipos con red lenta; remoto GitHub pendiente
-- PC de validación: pendiente
+- PC de validación: desarrollo local
 
 ## Regla de ejecución
 
@@ -17,8 +17,8 @@ Cada paso debe entregar configuración en Payload, contenido real o representati
 
 ## Pasos
 
-- [ ] 01 — Repositorio e integración mínima (`awaiting_manual_validation`)
-- [ ] 02 — Sistema visual y estructura global (`pending`)
+- [x] 01 — Repositorio e integración mínima (`approved`)
+- [ ] 02 — Sistema visual y estructura global (`awaiting_manual_validation`)
 - [ ] 03 — Portada (`pending`)
 - [ ] 04 — Páginas estáticas y contenido corporativo (`pending`)
 - [ ] 05 — Formulario de contacto (`pending`)
@@ -31,13 +31,13 @@ Cada paso debe entregar configuración en Payload, contenido real o representati
 
 ## Paso 01 — Repositorio e integración mínima
 
-Estado: `awaiting_manual_validation`.
+Estado: `approved` (validado por el usuario el 2026-08-02).
 
 Implementado: monorepo pnpm con `web/` Astro + Tailwind y `backend/` Payload preparado para PostgreSQL; Docker Compose con PostgreSQL y pgAdmin; colecciones `Users`, `Pages` (borradores/publicación) y `Media` con Sharp y almacenamiento local; API REST Payload; `/diagnostico/` con estados de CMS no disponible y vacío; seed idempotente; CI y documentación para trabajo desde varios equipos.
 
 Validación manual:
 
-1. En el servidor, copiar `infra/postgres/.env.example` a `infra/postgres/.env` y ejecutar `pnpm db:up`; en el PC de desarrollo, copiar `.env.example` a `.env` y poner la IP LAN del servidor en `DATABASE_URL`.
+1. En el servidor, copiar `infra/postgres/.env.example` a `infra/postgres/.env` y ejecutar `pnpm db:up`; en el PC de desarrollo, copiar `backend/.env.example` a `backend/.env.local` y `web/.env.example` a `web/.env`.
 2. Ejecutar `pnpm --filter backend dev` y abrir `http://localhost:3000/admin`; crear el primer usuario.
 3. Crear/verificar `diagnostico`, guardar borrador y comprobar que `http://localhost:4321/diagnostico/` no muestra borradores; publicar y comprobar el título.
 4. Subir una imagen en Media y confirmar que queda en `backend/uploads/images/` y la API la sirve.
@@ -58,6 +58,25 @@ Problema conocido: falta configurar el remoto de GitHub porque no se ha proporci
 - Astro con Tailwind CSS y página `/diagnostico/`.
 - Lectura de una página publicada desde Payload.
 - Referencia de imagen almacenada en `backend/uploads/images/`.
+
+## Paso 02 — Sistema visual y estructura global
+
+Estado: `awaiting_manual_validation`.
+
+Implementado: global `SiteSettings` editable desde Payload con identidad, navegación, pie, redes y contacto; seed representativo; tokens Tailwind ampliados; componentes Astro `SiteHeader`, `SiteFooter` y `SiteLayout`; página temporal `/guia-estilos/` con `noindex`, componentes, estados y fallback cuando el CMS no está disponible.
+
+Validación manual:
+
+1. Ejecutar el seed o editar `SiteSettings` en Payload y abrir `http://localhost:4321/guia-estilos/`.
+2. Cambiar nombre, tagline, navegación, pie, redes y contacto en Payload; confirmar que cabecera y pie se actualizan al recargar Astro.
+3. Revisar `/guia-estilos/` en móvil, tablet y escritorio.
+4. Comprobar contraste, foco visible, navegación por teclado y apertura del menú móvil.
+5. Confirmar que la página incluye `noindex, nofollow` y no contiene contenido ficticio fuera de los ejemplos visuales.
+6. Detener Payload y comprobar que la página muestra el fallback y el estado informativo de CMS no disponible.
+
+Tests ejecutados: typecheck de backend sin errores de TypeScript tras limpiar `.next`; pendiente completar validación visual manual.
+
+Problemas conocidos: el logo se puede asociar desde Payload, pero su renderizado visual queda pendiente de contenido Media real; la página de guía es temporal y no forma parte de la navegación pública.
 - Seed y prueba de integración.
 
 ### Validación manual pendiente

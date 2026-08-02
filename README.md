@@ -30,7 +30,7 @@ Consulta [infra/postgres/README.md](./infra/postgres/README.md) para el firewall
 
 ### 2. Variables en el PC de desarrollo
 
-El `.env` de la raíz no se carga automáticamente dentro de cada aplicación. Crea estos archivos ignorados por Git:
+Cada aplicación carga su propio archivo de entorno. Crea estos archivos ignorados por Git:
 
 `backend/.env.local`:
 

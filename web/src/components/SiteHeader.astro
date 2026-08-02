@@ -1,0 +1,24 @@
+---
+import type { SiteSettings } from '../lib/payload';
+
+type Props = { settings: SiteSettings };
+const { settings } = Astro.props;
+const navigation = settings.navigation ?? [];
+---
+
+<header class="border-b border-line/70 bg-surface/95">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4 lg:px-8">
+    <a class="font-display text-lg font-bold tracking-tight text-ink" href="/" aria-label={`${settings.siteName}, inicio`}>
+      {settings.siteName}
+    </a>
+    <nav aria-label="Navegación principal" class="hidden items-center gap-6 md:flex">
+      {navigation.map((item) => <a class="text-sm font-semibold text-muted transition hover:text-brand" href={item.href}>{item.label}</a>)}
+    </nav>
+    <details class="relative md:hidden">
+      <summary class="cursor-pointer list-none rounded border border-line px-3 py-2 text-sm font-semibold text-ink">Menú</summary>
+      <nav aria-label="Navegación móvil" class="absolute right-0 z-10 mt-2 min-w-52 rounded border border-line bg-surface p-3 shadow-lg">
+        {navigation.map((item) => <a class="block rounded px-3 py-2 text-sm font-semibold text-ink hover:bg-tint" href={item.href}>{item.label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>

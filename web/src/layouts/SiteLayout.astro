@@ -1,0 +1,25 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import type { SiteSettings } from '../lib/payload';
+
+type Props = { settings: SiteSettings; title: string; noindex?: boolean };
+const { settings, title, noindex = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="description" content={settings.tagline ?? settings.siteName} />
+    <title>{title} · {settings.siteName}</title>
+  </head>
+  <body class="flex min-h-screen flex-col bg-surface text-ink antialiased">
+    <SiteHeader settings={settings} />
+    <main class="flex-1"><slot /></main>
+    <SiteFooter settings={settings} />
+  </body>
+</html>

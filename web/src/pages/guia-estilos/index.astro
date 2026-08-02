@@ -1,0 +1,49 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getSiteSettings, type SiteSettings } from '../../lib/payload';
+
+const fallback: SiteSettings = {
+  siteName: 'Viriato Terra', tagline: 'Sistema visual', navigation: [], footerText: 'Contenido de ejemplo',
+};
+let settings = fallback;
+let cmsError = false;
+try { settings = (await getSiteSettings()) ?? fallback; } catch { cmsError = true; }
+---
+
+<SiteLayout settings={settings} title="Guía de estilos" noindex>
+  <div class="mx-auto max-w-6xl space-y-16 px-5 py-12 lg:px-8">
+    <header class="max-w-3xl space-y-4">
+      <p class="font-display text-sm font-bold uppercase tracking-[0.2em] text-brand">Guía de estilos</p>
+      <h1 class="font-display text-4xl font-bold tracking-tight text-ink md:text-6xl">Un sistema claro para salir al territorio.</h1>
+      <p class="max-w-2xl text-lg leading-8 text-muted">Página temporal para validar tokens, componentes, accesibilidad y estructura global antes de construir la portada.</p>
+      {cmsError && <p class="rounded border border-brand/40 bg-tint p-4 text-sm text-ink" role="status">No se pudo conectar con Payload. Se muestran valores de fallback.</p>}
+    </header>
+
+    <section aria-labelledby="colores" class="space-y-5">
+      <h2 id="colores" class="font-display text-2xl font-bold">Colores y tipografía</h2>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ['brand', 'Acción', 'bg-brand text-white'], ['ink', 'Texto', 'bg-ink text-white'],
+          ['muted', 'Secundario', 'bg-muted text-white'], ['tint', 'Superficie', 'bg-tint text-ink'],
+        ].map(([name, label, classes]) => <div class={`rounded-lg p-5 ${classes}`}><p class="font-display font-bold">{label}</p><p class="mt-1 text-sm opacity-80">{name}</p></div>)}
+      </div>
+    </section>
+
+    <section aria-labelledby="componentes" class="grid gap-10 lg:grid-cols-2">
+      <div class="space-y-5">
+        <h2 id="componentes" class="font-display text-2xl font-bold">Componentes</h2>
+        <div class="flex flex-wrap gap-3">
+          <a class="rounded-full bg-brand px-5 py-3 text-sm font-bold text-white transition hover:bg-ink" href="#formulario">Botón principal</a>
+          <a class="rounded-full border border-ink px-5 py-3 text-sm font-bold text-ink transition hover:bg-tint" href="#formulario">Botón secundario</a>
+        </div>
+        <article class="rounded-xl border border-line bg-white p-6 shadow-sm"><p class="text-sm font-bold uppercase tracking-wider text-brand">Tarjeta</p><h3 class="mt-2 font-display text-xl font-bold">Evento de prueba</h3><p class="mt-2 text-muted">Una tarjeta mantiene jerarquía, contraste y espacio consistente.</p></article>
+      </div>
+      <div id="formulario" class="space-y-5">
+        <h2 class="font-display text-2xl font-bold">Formulario y estados</h2>
+        <label class="block text-sm font-semibold" for="style-email">Email<input id="style-email" class="mt-2 block w-full rounded border border-line bg-white px-4 py-3 text-ink" type="email" placeholder="tu@email.com" /></label>
+        <div class="rounded border border-line bg-tint p-4 text-sm" role="status">Estado informativo: todo está listo para continuar.</div>
+        <div class="rounded border border-brand/50 bg-white p-4 text-sm text-muted" role="status">Estado vacío: todavía no hay eventos destacados.</div>
+      </div>
+    </section>
+  </div>
+</SiteLayout>

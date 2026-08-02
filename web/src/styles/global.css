@@ -5,6 +5,8 @@
   --color-ink: #1a1c1c;
   --color-muted: #5f5e5e;
   --color-line: #e1bfb5;
+  --color-surface: #f9f9f9;
+  --color-tint: #f3e7e2;
   --font-display: "JetBrains Mono", ui-monospace, monospace;
   --font-body: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
 }
