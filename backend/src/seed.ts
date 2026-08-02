@@ -9,4 +9,4 @@ if (!existing.docs[0]) {
 } else {
   console.log('Página de prueba ya existente: diagnostico')
 }
-await payload.db.destroy()
+if (payload.db.destroy) await payload.db.destroy()
