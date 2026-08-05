@@ -1,5 +1,6 @@
 ---
 import type { SiteSettings } from '../lib/payload';
+import officialLogo from '../../../design/viriato-logo.png';
 
 type Props = { settings: SiteSettings };
 const { settings } = Astro.props;
@@ -8,8 +9,8 @@ const navigation = settings.navigation ?? [];
 
 <header class="border-b border-line/70 bg-surface/95">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4 lg:px-8">
-    <a class="font-display text-lg font-bold tracking-tight text-ink" href="/" aria-label={`${settings.siteName}, inicio`}>
-      {settings.siteName}
+    <a class="flex items-center" href="/" aria-label={`${settings.siteName}, inicio`}>
+      <img class="h-10 w-auto" src={officialLogo.src} alt={settings.siteName} />
     </a>
     <nav aria-label="Navegación principal" class="hidden items-center gap-6 md:flex">
       {navigation.map((item) => <a class="text-sm font-semibold text-muted transition hover:text-brand" href={item.href}>{item.label}</a>)}

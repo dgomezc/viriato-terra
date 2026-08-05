@@ -2,10 +2,10 @@
 
 ## Estado
 
-- Paso actual: 02
+- Paso actual: 03
 - Estado: `awaiting_manual_validation`
-- Último paso aprobado: 01
-- Próxima acción: esperar validación manual del Paso 02; no iniciar el Paso 03
+- Último paso aprobado: 02
+- Próxima acción: esperar validación manual del Paso 03; no iniciar el Paso 04
 - Rama: `main` (commit `2cafaa0`); remoto GitHub pendiente
 - Última actualización: 2026-08-05
 - Bloqueos: instalación puede tardar en equipos con red lenta; remoto GitHub pendiente
@@ -19,7 +19,7 @@ Cada paso debe entregar configuración en Payload, contenido real o representati
 
 - [x] 01 — Repositorio e integración mínima (`approved`)
 - [ ] 02 — Sistema visual y estructura global (`awaiting_manual_validation`)
-- [ ] 03 — Portada (`pending`)
+- [ ] 03 — Portada (`awaiting_manual_validation`)
 - [ ] 04 — Páginas estáticas y contenido corporativo (`pending`)
 - [ ] 05 — Formulario de contacto (`pending`)
 - [ ] 06 — Eventos próximos (`pending`)
@@ -63,7 +63,7 @@ Problema conocido: falta configurar el remoto de GitHub porque no se ha proporci
 
 Estado: `awaiting_manual_validation`.
 
-Implementado: global `SiteSettings` editable desde Payload con identidad, navegación, pie, redes y contacto; seed representativo; tokens Tailwind ampliados; componentes Astro `SiteHeader`, `SiteFooter` y `SiteLayout`; página temporal `/guia-estilos/` con `noindex`, componentes, estados y fallback cuando el CMS no está disponible; lectura de settings y contenido publicado desde Astro; generación automática del import map de Payload antes de `dev`/`build` para evitar el error `CollectionCards`.
+Implementado: global `SiteSettings` editable desde Payload con identidad, navegación, pie, redes y contacto; seed representativo; tokens Tailwind ampliados; componentes Astro `SiteHeader`, `SiteFooter` y `SiteLayout`; página temporal `/guia-estilos/` con `noindex`, componentes, estados y fallback cuando el CMS no está disponible; lectura de settings y contenido publicado desde Astro; generación automática del import map de Payload antes de `dev`/`build` para evitar el error `CollectionCards`; portada inicial en Astro que usa `SiteSettings` y una página publicada como destacado.
 
 Validación manual:
 
@@ -78,6 +78,22 @@ Tests ejecutados: `pnpm --filter backend payload generate:importmap`, `pnpm --fi
 
 Problemas conocidos: el logo se puede asociar desde Payload, pero su renderizado visual queda pendiente de contenido Media real; la página de guía es temporal y no forma parte de la navegación pública.
 - Seed y prueba de integración.
+
+## Paso 03 — Portada
+
+Estado: `awaiting_manual_validation`.
+
+Implementado: portada en Astro basada en el mockup y guía de `design/`, con logo oficial, hero táctico de dos columnas, topografía vectorial, panel de telemetría, módulos de contenido y CTA; usa `SiteSettings` y la página publicada `diagnostico` como destacado cuando existe.
+
+Validación manual:
+
+1. Abrir `http://localhost:4321/` con Payload activo.
+2. Confirmar que el hero muestra el nombre y tagline de `SiteSettings`.
+3. Confirmar que el CTA desplaza hasta el contenido destacado y que su enlace abre `/diagnostico/`.
+4. Publicar o ajustar la página `diagnostico` en Payload y comprobar que aparece como destacado.
+5. Detener Payload y verificar el fallback informativo.
+
+Tests ejecutados: `pnpm --filter web build`, `pnpm --filter backend typecheck`.
 
 ### Validación manual pendiente
 

@@ -1,0 +1,110 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { getPageBySlug, getSiteSettings, type SiteSettings } from '../lib/payload';
+
+const fallback: SiteSettings = {
+  siteName: 'Viriato Terra',
+  tagline: 'Deporte, naturaleza y territorio',
+  navigation: [],
+  footerText: 'Contenido de ejemplo',
+};
+
+let settings = fallback;
+let featuredPage = null;
+let cmsError = false;
+
+try {
+  settings = (await getSiteSettings()) ?? fallback;
+  featuredPage = await getPageBySlug('diagnostico');
+} catch {
+  cmsError = true;
+}
+---
+
+<SiteLayout settings={settings} title="Inicio">
+  <section class="relative overflow-hidden border-b border-line bg-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:radial-gradient(var(--color-ink)_1px,transparent_1px)] [background-size:12px_12px]"></div>
+    <div class="relative mx-auto grid min-h-[42rem] max-w-7xl lg:grid-cols-2">
+      <div class="flex flex-col justify-center px-5 py-16 sm:px-8 lg:px-12 lg:py-24 xl:px-16">
+        <div class="flex items-center gap-3">
+          <span aria-hidden="true" class="h-0.5 w-10 bg-brand"></span>
+          <p class="font-display text-xs font-bold uppercase tracking-[0.18em] text-brand">Viriato Terra</p>
+        </div>
+        <h1 class="mt-7 max-w-2xl font-display text-5xl font-bold leading-[0.98] tracking-[-0.04em] text-ink sm:text-6xl xl:text-7xl">
+          Domina la <span class="text-brand">sierra</span>, conquista el barro.
+        </h1>
+        <p class="mt-8 max-w-xl text-lg leading-8 text-muted">
+          {settings.tagline ?? 'Deporte, naturaleza y territorio'}
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a class="border-b-2 border-ink bg-brand px-7 py-4 font-display text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-ink" href="#destacado">
+            Explorar contenidos <span aria-hidden="true">→</span>
+          </a>
+          <a class="border border-ink bg-white px-7 py-4 font-display text-xs font-bold uppercase tracking-[0.12em] text-ink transition hover:bg-tint" href="/diagnostico/">
+            Conocer Viriato Terra
+          </a>
+        </div>
+      </div>
+
+      <div class="relative min-h-96 overflow-hidden bg-ink lg:min-h-0">
+        <div aria-hidden="true" class="absolute inset-0 bg-[linear-gradient(135deg,#1a1c1c_0%,#2f3131_48%,#d9541e_49%,#d9541e_54%,#1a1c1c_55%)]"></div>
+        <svg aria-hidden="true" class="absolute inset-0 h-full w-full opacity-35" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M-25 485C111 366 121 291 214 298C307 305 292 391 394 370C496 349 521 222 673 151" stroke="white" stroke-width="2"/>
+          <path d="M-14 552C128 428 148 359 237 365C326 371 320 452 417 428C514 404 554 282 686 205" stroke="white" stroke-width="2"/>
+          <path d="M-38 410C83 296 105 214 194 225C283 236 286 320 377 305C468 290 496 174 652 91" stroke="white" stroke-width="2"/>
+          <path d="M40 626C192 501 201 460 300 463C399 466 416 538 512 507C608 476 619 380 700 324" stroke="white" stroke-width="2"/>
+          <circle cx="431" cy="306" r="126" stroke="#d9541e" stroke-width="20"/>
+        </svg>
+        <div class="absolute inset-x-5 bottom-5 border border-white/30 bg-white p-5 sm:inset-x-10 sm:bottom-10 sm:p-6">
+          <div class="flex items-end justify-between gap-5">
+            <p class="font-display text-[11px] font-bold uppercase tracking-[0.14em] text-brand">Territorio</p>
+            <p class="font-display text-sm font-bold text-ink">Sierra de San Vicente</p>
+          </div>
+          <div aria-hidden="true" class="mt-5 h-1 bg-line"><div class="h-full w-2/3 bg-brand"></div></div>
+          <div class="mt-2 flex justify-between font-display text-[10px] font-bold text-muted">
+            <span>ORIGEN</span><span>HORIZONTE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="destacado" class="bg-surface px-5 py-16 sm:px-8 lg:px-12 lg:py-24 xl:px-16">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-10 border-b border-line pb-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div>
+          <p class="font-display text-xs font-bold uppercase tracking-[0.18em] text-brand">// Viriato Terra</p>
+          <h2 class="mt-4 font-display text-3xl font-bold leading-tight tracking-[-0.03em] text-ink sm:text-4xl">Experiencias con identidad de territorio.</h2>
+        </div>
+        <p class="max-w-2xl text-lg leading-8 text-muted">Una estructura clara para descubrir la actividad de Viriato Terra y sus contenidos publicados.</p>
+      </div>
+
+      <div class="mt-10 grid gap-6 lg:grid-cols-[1.35fr_0.65fr]">
+        {featuredPage ? (
+          <article class="border border-line bg-white p-7 sm:p-9">
+            <p class="font-display text-xs font-bold uppercase tracking-[0.18em] text-brand">Contenido destacado</p>
+            <h3 class="mt-5 max-w-2xl font-display text-3xl font-bold leading-tight text-ink">{featuredPage.title}</h3>
+            <div class="mt-10 flex flex-wrap items-center justify-between gap-5 border-t border-line pt-5">
+              <p class="font-display text-xs font-bold uppercase tracking-[0.12em] text-muted">Publicación editorial</p>
+              <a class="border border-ink px-5 py-3 font-display text-xs font-bold uppercase tracking-[0.1em] text-ink transition hover:bg-ink hover:text-white" href="/diagnostico/">Abrir contenido →</a>
+            </div>
+          </article>
+        ) : (
+          <article class="border border-dashed border-line bg-white p-7 sm:p-9" role="status">
+            <p class="font-display text-xs font-bold uppercase tracking-[0.18em] text-brand">Contenido destacado</p>
+            <h3 class="mt-5 font-display text-3xl font-bold leading-tight text-ink">Preparando la próxima salida.</h3>
+            <p class="mt-5 max-w-xl leading-7 text-muted">Este módulo mostrará la próxima publicación cuando esté disponible en Payload.</p>
+          </article>
+        )}
+
+        <aside class="flex min-h-64 flex-col justify-between bg-brand p-7 text-white sm:p-9">
+          <p class="font-display text-xs font-bold uppercase tracking-[0.18em] text-white/75">Estado operativo</p>
+          <p class="font-display text-3xl font-bold leading-tight">Más terreno.<br />Más historia.</p>
+          <a class="w-fit border border-white bg-white px-5 py-3 font-display text-xs font-bold uppercase tracking-[0.1em] text-ink transition hover:bg-tint" href="/diagnostico/">Ver diagnóstico →</a>
+        </aside>
+      </div>
+
+      {cmsError && <p class="mt-8 border border-brand bg-white p-4 text-sm text-ink" role="status">Payload no está disponible ahora mismo. La portada usa los valores predeterminados.</p>}
+    </div>
+  </section>
+</SiteLayout>
