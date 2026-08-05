@@ -103,6 +103,8 @@ pnpm dev:web
 
 También se pueden iniciar ambos con `pnpm dev`.
 
+`backend` regenera automáticamente `app/(payload)/admin/importMap.ts` antes de `dev` y `build`, así que no hace falta ejecutarlo a mano salvo para depurar Payload.
+
 URLs: Payload `http://localhost:3000/admin`, API `http://localhost:3000/api`, Astro `http://localhost:4321/diagnostico/` y pgAdmin `http://IP_DEL_SERVIDOR:5050`.
 
 ## Comprobaciones

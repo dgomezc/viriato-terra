@@ -7,7 +7,7 @@
 - Último paso aprobado: 01
 - Próxima acción: esperar validación manual del Paso 02; no iniciar el Paso 03
 - Rama: `main` (commit `2cafaa0`); remoto GitHub pendiente
-- Última actualización: 2026-08-01
+- Última actualización: 2026-08-05
 - Bloqueos: instalación puede tardar en equipos con red lenta; remoto GitHub pendiente
 - PC de validación: desarrollo local
 
@@ -63,7 +63,7 @@ Problema conocido: falta configurar el remoto de GitHub porque no se ha proporci
 
 Estado: `awaiting_manual_validation`.
 
-Implementado: global `SiteSettings` editable desde Payload con identidad, navegación, pie, redes y contacto; seed representativo; tokens Tailwind ampliados; componentes Astro `SiteHeader`, `SiteFooter` y `SiteLayout`; página temporal `/guia-estilos/` con `noindex`, componentes, estados y fallback cuando el CMS no está disponible.
+Implementado: global `SiteSettings` editable desde Payload con identidad, navegación, pie, redes y contacto; seed representativo; tokens Tailwind ampliados; componentes Astro `SiteHeader`, `SiteFooter` y `SiteLayout`; página temporal `/guia-estilos/` con `noindex`, componentes, estados y fallback cuando el CMS no está disponible; lectura de settings y contenido publicado desde Astro; generación automática del import map de Payload antes de `dev`/`build` para evitar el error `CollectionCards`.
 
 Validación manual:
 
@@ -74,7 +74,7 @@ Validación manual:
 5. Confirmar que la página incluye `noindex, nofollow` y no contiene contenido ficticio fuera de los ejemplos visuales.
 6. Detener Payload y comprobar que la página muestra el fallback y el estado informativo de CMS no disponible.
 
-Tests ejecutados: typecheck de backend sin errores de TypeScript tras limpiar `.next`; pendiente completar validación visual manual.
+Tests ejecutados: `pnpm --filter backend payload generate:importmap`, `pnpm --filter backend typecheck`, `pnpm --filter backend build`.
 
 Problemas conocidos: el logo se puede asociar desde Payload, pero su renderizado visual queda pendiente de contenido Media real; la página de guía es temporal y no forma parte de la navegación pública.
 - Seed y prueba de integración.
